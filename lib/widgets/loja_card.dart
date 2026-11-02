@@ -150,3 +150,34 @@ class _EtiquetaStatus extends StatelessWidget {
     );
   }
 }
+
+class _Nota extends StatelessWidget {
+  final Loja loja;
+  const _Nota({required this.loja});
+
+  @override
+  Widget build(BuildContext context) {
+    if (loja.mediaAvaliacao == null) {
+      return Text(
+        'Sem avaliações',
+        style: TextStyle(color: Colors.grey.shade500, fontSize: 12),
+      );
+    }
+
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(Icons.star, size: 16, color: Colors.amber.shade700),
+        const SizedBox(width: 2),
+        Text(
+          loja.mediaFormatada,
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+        ),
+        Text(
+          ' (${loja.totalAvaliacoes})',
+          style: TextStyle(color: Colors.grey.shade600, fontSize: 12),
+        ),
+      ],
+    );
+  }
+}

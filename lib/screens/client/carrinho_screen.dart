@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../models/carrinho.dart';
 import '../../services/carrinho_service.dart';
+import 'checkout_screen.dart';
 import 'produto_detail_modal.dart';
 
 class CarrinhoScreen extends StatefulWidget {
@@ -77,6 +78,13 @@ class _CarrinhoScreenState extends State<CarrinhoScreen> {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.mensagem)));
     }
+  }
+  Future<void> _finalizar() async {
+    await Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => const CheckoutScreen()),
+    );
+   
+    if (mounted) _carregar();
   }
 
   Future<void> _removerItem(ItemCarrinho item) async {
@@ -155,9 +163,14 @@ class _CarrinhoScreenState extends State<CarrinhoScreen> {
           mainAxisSize: MainAxisSize.min,
           children: [
             _linhaValor('Subtotal', _carrinho.subtotal),
-            _linhaValor('Taxa de entrega', _carrinho.taxaEntrega),
-            const Divider(),
-            _linhaValor('Total', _carrinho.total, destaque: true),
+            const SizedBox(height: 2),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'A taxa de entrega e o total final são calculados no fechamento, conforme o endereço.',
+                style: TextStyle(color: Colors.grey.shade600, fontSize: 12),
+              ),
+            ),
             const SizedBox(height: 8),
             SizedBox(
               width: double.infinity,
@@ -165,13 +178,7 @@ class _CarrinhoScreenState extends State<CarrinhoScreen> {
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 14),
                 ),
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Finalizar pedido (próxima tarefa)'),
-                    ),
-                  );
-                },
+                onPressed: _finalizar,
                 child: const Text('Finalizar pedido'),
               ),
             ),

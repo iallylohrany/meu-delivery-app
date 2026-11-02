@@ -28,8 +28,13 @@ class Loja {
       taxaEntrega: (json['taxaEntrega'] as num?)?.toDouble() ?? 0,
     
       aberta: json['aberta'] as bool? ?? false,
+      mediaAvaliacao: (json['mediaAvaliacao'] as num?)?.toDouble(),
+      totalAvaliacoes: (json['totalAvaliacoes'] as num?)?.toInt() ?? 0,
     );
   }
+
+  String get mediaFormatada =>
+      mediaAvaliacao == null ? '' : mediaAvaliacao!.toStringAsFixed(1).replaceAll('.', ',');
 
   String get taxaFormatada {
     if (taxaEntrega <= 0) return 'Grátis';

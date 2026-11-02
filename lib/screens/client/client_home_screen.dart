@@ -4,6 +4,7 @@ import '../../widgets/placeholder_content.dart';
 import '../profile_select_screen.dart';
 import 'lojas_screen.dart';
 import 'enderecos_screen.dart';
+import 'pedidos_screen.dart';
 
 
 class ClientHomeScreen extends StatefulWidget {
@@ -41,6 +42,11 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
     switch (_indiceAtual) {
       case 0:
         return LojasScreen(onSessaoExpirada: _sessaoExpirada);
+      case 1:
+        return PedidosScreen(
+          onSessaoExpirada: _sessaoExpirada,
+          onVerLojas: () => setState(() => _indiceAtual = 0),
+        );
       case 2:
         return EnderecosScreen(onSessaoExpirada: _sessaoExpirada);
       case 3:

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../widgets/placeholder_content.dart';
+import 'entregas_screen.dart';
+import 'ganhos_screen.dart';
 
 
 class DeliveryHomeScreen extends StatefulWidget {
@@ -23,10 +25,14 @@ class _DeliveryHomeScreenState extends State<DeliveryHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(_titulos[_indiceAtual])),
-      body: PlaceholderContent(
-        titulo: _titulos[_indiceAtual],
-        icone: _icones[_indiceAtual],
-      ),
+      body: _indiceAtual == 0
+          ? const EntregasScreen()
+          : _indiceAtual == 1
+              ? const GanhosScreen()
+              : PlaceholderContent(
+                  titulo: _titulos[_indiceAtual],
+                  icone: _icones[_indiceAtual],
+                ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _indiceAtual,
         onDestinationSelected: (i) => setState(() => _indiceAtual = i),
