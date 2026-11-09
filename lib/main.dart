@@ -1,3 +1,4 @@
+import 'config/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'screens/splash_screen.dart';
 
@@ -13,11 +14,7 @@ class MeuDeliveryApp extends StatelessWidget {
     return MaterialApp(
       title: 'Meu Delivery',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorSchemeSeed: const Color(0xFFFF5722),
-        useMaterial3: true,
-        brightness: Brightness.light,
-      ),
+      theme: AppTheme.themeData,
       home: const SplashScreen(),
     );
   }

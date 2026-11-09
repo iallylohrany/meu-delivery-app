@@ -8,6 +8,10 @@ class Loja {
   final double taxaEntrega;
   final bool aberta;
 
+   
+  final double? mediaAvaliacao;
+  final int totalAvaliacoes;
+
   const Loja({
     required this.id,
     required this.nome,
@@ -16,6 +20,8 @@ class Loja {
     required this.tempoEstimadoMin,
     required this.taxaEntrega,
     required this.aberta,
+    this.mediaAvaliacao,
+    this.totalAvaliacoes = 0,
   });
 
   factory Loja.fromJson(Map<String, dynamic> json) {

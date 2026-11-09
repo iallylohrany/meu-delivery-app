@@ -1,3 +1,4 @@
+import '../../../config/app_theme.dart';
 import 'package:flutter/material.dart';
 import '../../../services/auth_service.dart';
 import '../client_home_screen.dart';
@@ -67,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const Icon(Icons.delivery_dining,
-                    size: 72, color: Colors.deepOrange),
+                    size: 72,color: AppTheme.primaryColor),
                 const SizedBox(height: 8),
                 const Text(
                   'Meu Delivery',
